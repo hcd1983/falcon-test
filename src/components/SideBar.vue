@@ -3,12 +3,12 @@
     <nav>
       <ul class="flex flex-col gap-3 text-gray-500">
         <li
-          v-for="({text, slug}, idx) in links" :key="idx">
+          v-for="(link, idx) in links" :key="idx">
           <a
-            :href="`/${slug}`"
-            @click.prevent="handleLinkClick(slug)"
-            :class="`${current === slug ? 'text-blue-500' : ''}`"
-          >icon {{ text }}</a>
+            :href="`/${link.slug}`"
+            @click.prevent="handleLinkClick(idx)"
+            :class="`${current === idx ? 'text-blue-500' : ''}`"
+          >icon {{ link.text }}</a>
         </li>
       </ul>
     </nav>
@@ -18,29 +18,10 @@
 <script>
 export default {
   name: 'SideBar',
-  data() {
-    return {
-      current: 'hot',
-      links: [
-        {
-          text: '熱門報導',
-          slug: 'hot',
-        },
-        {
-          text: '台灣',
-          slug: 'taiwan',
-        },
-        {
-          text: '中國',
-          slug: 'china',
-        },
-      ],
-    };
-  },
+  props: ['links', 'current'],
   methods: {
-    handleLinkClick(slug) {
-      this.current = slug;
-      window.history.pushState(null, '', `/${slug}`);
+    handleLinkClick(link) {
+      this.$emit('linkClicked', link);
     },
   },
 };

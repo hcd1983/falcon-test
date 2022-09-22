@@ -1,16 +1,17 @@
 <template>
-  <Layout>
+  <Layout v-if="data">
     <template #header>
       <Header />
     </template>
     <template #side>
-      <SideBar />
+      <SideBar :links="sideLinks" :current="currentLinkIdx" @linkClicked="linkClicked"/>
     </template>
     <template #main>
-      <Content />
+      <Content :title="contentTitle" :data="data" />
     </template>
     <template #footer>
       <Footer />
+      <pre>{{ data }}</pre>
     </template>
   </Layout>
 </template>
@@ -24,6 +25,20 @@ import SideBar from '@/components/SideBar.vue';
 import Layout from '@/components/Layout.vue';
 import testData from './develop_data/top-headlines.json';
 
+const sideLinks = [
+  {
+    text: '熱門報導',
+    slug: 'hot',
+  },
+  {
+    text: '台灣',
+    slug: 'taiwan',
+  },
+  {
+    text: '中國',
+    slug: 'china',
+  },
+];
 export default {
   name: 'App',
   components: {
@@ -31,16 +46,23 @@ export default {
     Footer,
     SideBar,
     Content,
-    Layout
+    Layout,
   },
   data() {
     return {
       // data: null,
+      currentLinkIdx: 0,
       data: testData,
+      sideLinks,
     };
   },
   mounted() {
     // this.getData();
+  },
+  computed: {
+    contentTitle() {
+      return this.sideLinks[this.currentLinkIdx].text;
+    },
   },
   methods: {
     getData() {
@@ -58,6 +80,10 @@ export default {
       axios(options).then(({ data }) => {
         this.data = data;
       });
+    },
+    linkClicked(idx) {
+      this.currentLinkIdx = idx;
+      window.history.pushState(null, '', `/${this.sideLinks[idx].slug}`);
     },
   },
 };

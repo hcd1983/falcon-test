@@ -49,14 +49,14 @@ export default {
   },
   data() {
     return {
-      // data: null,
+      data: null,
       currentLinkIdx: 0,
-      data: testData,
+      // data: testData,
       sideLinks,
     };
   },
   mounted() {
-    // this.getData();
+    this.getData();
   },
   computed: {
     contentTitle() {

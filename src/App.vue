@@ -11,7 +11,6 @@
     </template>
     <template #footer>
       <Footer />
-      <pre>{{ data }}</pre>
     </template>
   </Layout>
 </template>

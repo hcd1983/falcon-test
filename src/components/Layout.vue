@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col h-screen">
     <div class="border-b border-gray-300">
       <slot name="header" />
     </div>
-    <div class="flex border-b border-gray-300 flex-1">
+    <div class="flex border-b border-gray-300 flex-1 overflow-y-auto">
       <div class="w-[300px] border-r border-gray-300">
         <slot name="side" />
       </div>

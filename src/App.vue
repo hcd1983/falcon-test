@@ -1,8 +1,18 @@
 <template>
-  <Header />
-  <Content />
-  <SideBar />
-  <Footer />
+  <Layout>
+    <template #header>
+      <Header />
+    </template>
+    <template #side>
+      <SideBar />
+    </template>
+    <template #main>
+      <Content />
+    </template>
+    <template #footer>
+      <Footer />
+    </template>
+  </Layout>
 </template>
 
 <script>
@@ -11,6 +21,7 @@ import Content from '@/components/Content.vue';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import SideBar from '@/components/SideBar.vue';
+import Layout from '@/components/Layout.vue';
 import testData from './develop_data/top-headlines.json';
 
 export default {
@@ -20,6 +31,7 @@ export default {
     Footer,
     SideBar,
     Content,
+    Layout
   },
   data() {
     return {

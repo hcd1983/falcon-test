@@ -1,26 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <h1 class="text-blue-700">Hello</h1>
-  <pre>{{ data }}</pre>
+  <Header />
+  <Content />
+  <SideBar />
+  <Footer />
 </template>
 
 <script>
 import axios from 'axios';
-import HelloWorld from './components/HelloWorld.vue';
+import Content from '@/components/Content.vue';
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
+import SideBar from '@/components/SideBar.vue';
+import testData from './develop_data/top-headlines.json';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    Header,
+    Footer,
+    SideBar,
+    Content,
   },
   data() {
     return {
-      data: null,
+      // data: null,
+      data: testData,
     };
   },
   mounted() {
-    this.getData();
+    // this.getData();
   },
   methods: {
     getData() {
@@ -42,14 +50,3 @@ export default {
   },
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
